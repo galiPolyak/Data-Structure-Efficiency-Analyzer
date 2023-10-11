@@ -9,6 +9,7 @@
 int
 processFasta(char *filename, double *timeTaken)
 {
+
 	FILE *fp;
 	FASTArecord fRecord;
 	int lineNumber = 0, recordNumber = 0, status;
@@ -25,7 +26,9 @@ processFasta(char *filename, double *timeTaken)
 	/** record the time now, before we do the work */
 	startTime = clock();
 
+
 	do {
+
 		/** print a '.' every 10,000 records so
 		* we know something is happening */
 		if ((recordNumber % 10000) == 0) {
@@ -33,9 +36,11 @@ processFasta(char *filename, double *timeTaken)
 			fflush(stdout);
 		}
 
+		printf("Initializes Fasta\n");
 		fastaInitializeRecord(&fRecord);
 
 		status = fastaReadRecord(fp, &fRecord);
+		printf("Reads Fasta Record\n");
 		if (status == 0) {
 			eofSeen = 1;
 
@@ -43,6 +48,8 @@ processFasta(char *filename, double *timeTaken)
 			lineNumber += status;
 			recordNumber++;
 			//fastaPrintRecord(stdout, &fRecord);
+			
+
 			fastaClearRecord(&fRecord);
 		} else {
 			fprintf(stderr, "status = %d\n", status);
@@ -73,6 +80,9 @@ processFastaRepeatedly(
 		long repeatsRequested
 	)
 {
+
+	printf("Enters processFastaRepeatedly1\n");
+
 	double timeThisIterationInSeconds;
 	double totalTimeInSeconds = 0;
 	int minutesPortion;
@@ -94,6 +104,7 @@ processFastaRepeatedly(
 	printf("On average: %d minutes, %lf second per run\n",
             minutesPortion, totalTimeInSeconds);
 
+	printf("Return status from processFastaRepeatedly2\n");
 	return status;
 }
 
