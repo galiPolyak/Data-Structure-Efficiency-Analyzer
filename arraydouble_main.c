@@ -135,13 +135,13 @@ processFastaRepeatedly(
     totalTimeInSeconds += timeThisIterationInSeconds;
   }
 
-  printf("%lf seconds taken for processing total\n", totalTimeInSeconds);
+  printf("%.3lf seconds taken for processing total\n", totalTimeInSeconds);
 
   totalTimeInSeconds /= (double) repeatsRequested;
 
   minutesPortion = (int) (totalTimeInSeconds / 60);
   totalTimeInSeconds = totalTimeInSeconds - (60 * minutesPortion);
-  printf("On average: %d minutes, %lf second per run\n",
+  printf("On average: %d minutes, %.3lf second per run\n",
             minutesPortion, totalTimeInSeconds);
 
   //printf("Return status from processFastaRepeatedly2\n");
